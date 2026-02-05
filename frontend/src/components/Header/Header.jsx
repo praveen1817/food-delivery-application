@@ -6,7 +6,6 @@ const Header = () => {
   return (
     
     <>
-    <Navbar/>
     <div className="header">
         <div className="header-contents">
             <h2>Order Your Food and and Enjoy</h2>
