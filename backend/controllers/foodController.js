@@ -14,6 +14,7 @@ const addFood= async(req,res)=>{
     })
     try{
         await food.save();
+        console.log("Added Successfully")
         res.status(201).json({success:true,message:"The Food Menu  Added to Database"})
 
     }catch(err){
@@ -24,6 +25,7 @@ const addFood= async(req,res)=>{
 const listFood=async(req,res)=>{
     try{
         const foods=await foodModel.find({});
+        console.log("The Data Fetched")
         res.status(200).json({success:true,message:"Data fetched Successfully",data:foods})
     }catch(err){
         console.log(err);

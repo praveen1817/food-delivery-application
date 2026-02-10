@@ -2,8 +2,9 @@ import { assets } from '../../assets/assets';
 import './Add.css';
 import React, { useEffect } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
-const Add = () => {
+const Add = ({url}) => {
     const [image, setImage] = React.useState(false);
 
     const [data, setData] = React.useState({
@@ -31,7 +32,7 @@ const Add = () => {
         formData.append("category", data.category);
         formData.append("image", image);
         try {
-            const response = await axios.post('http://localhost:4000/api/food/add', formData);
+            const response = await axios.post(`${url}/api/food/add`, formData);
             if (response.data.success) {
                 setData(
                     {
@@ -42,11 +43,13 @@ const Add = () => {
                     }
                 )
                 setImage(false);
+                toast.success(response.data.message);
             }
             console.log("The Data Added Successfully")
 
-        }catch(err){
-            console.log(err)
+        }catch(error){
+            toast.error(response.data.message);
+            console.log(error)
             console.log("Internal Server Error Ocuured")
         }
 
